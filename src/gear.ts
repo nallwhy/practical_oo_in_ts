@@ -1,3 +1,5 @@
+import { Wheel } from "./wheel"
+
 export class Gear {
     private _chainring: number
     private get chainring(): number {
@@ -15,7 +17,7 @@ export class Gear {
     constructor(chainring: number, cog: number, rim: number, tire: number) {
         this._chainring = chainring
         this._cog = cog
-        this._wheel = { rim: rim, tire: tire, getDiameter: function() {return this.rim + (this.tire * 2)}}
+        this._wheel = new Wheel(rim, tire)
     }
 
     // ratio = chainring / cog
@@ -25,12 +27,6 @@ export class Gear {
 
     // gear inches = tire diameter * ratio
     public get gearInches(): number {
-        return this.ratio * this.wheel.getDiameter()
+        return this.ratio * this.wheel.diameter
     }
-}
-
-interface Wheel {
-    rim: number
-    tire: number
-    getDiameter(): number
 }
