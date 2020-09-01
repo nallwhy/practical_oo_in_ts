@@ -9,7 +9,11 @@ export class RevealingReferences {
     }
 
     public get diameters(): number[] {
-        return this.wheels.map(wheel => wheel.rim + (wheel.tire * 2))
+        return this.wheels.map(this.calcDiameter)
+    }
+
+    private calcDiameter(wheel: Wheel): number {
+        return wheel.rim + (wheel.tire * 2)
     }
 
     private wheelify(data: number[][]): Wheel[] {

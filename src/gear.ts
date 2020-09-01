@@ -31,8 +31,12 @@ export class Gear {
     }
 
     // gear inches = tire diameter * ratio
-    // tier diameter = rim diameter + tire height * 2
     public get gearInches(): number {
-        return (this.rim + (this.tire * 2)) * this.ratio
+        return this.diameter * this.ratio
+    }
+    
+    // tier diameter = rim diameter + tire height * 2
+    private get diameter(): number {
+        return this.rim + (this.tire * 2)
     }
 }
