@@ -26,13 +26,13 @@ export class Gear {
     }
 
     // ratio = chainring / cog
-    public getRatio(): number {
+    public get ratio(): number {
         return this.chainring / this.cog
     }
 
     // gear inches = tire diameter * ratio
     // tier diameter = rim diameter + tire height * 2
-    public getGearInches(): number {
-        return (this.rim + (this.tire * 2)) * this.getRatio()
+    public get gearInches(): number {
+        return (this.rim + (this.tire * 2)) * this.ratio
     }
 }
