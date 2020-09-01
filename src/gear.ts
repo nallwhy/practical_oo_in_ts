@@ -7,22 +7,15 @@ export class Gear {
     private get cog(): number {
         return this._cog
     }
-    // rim diameter
-    private _rim: number
-    private get rim(): number {
-        return this._rim
-    }
-    // tire height
-    private _tire: number
-    private get tire(): number {
-        return this._tire
+    private _wheel: Wheel
+    private get wheel(): Wheel {
+        return this._wheel
     }
 
     constructor(chainring: number, cog: number, rim: number, tire: number) {
         this._chainring = chainring
         this._cog = cog
-        this._rim = rim
-        this._tire = tire
+        this._wheel = { rim: rim, tire: tire, getDiameter: function() {return this.rim + (this.tire * 2)}}
     }
 
     // ratio = chainring / cog
@@ -32,11 +25,12 @@ export class Gear {
 
     // gear inches = tire diameter * ratio
     public get gearInches(): number {
-        return this.diameter * this.ratio
+        return this.ratio * this.wheel.getDiameter()
     }
-    
-    // tier diameter = rim diameter + tire height * 2
-    private get diameter(): number {
-        return this.rim + (this.tire * 2)
-    }
+}
+
+interface Wheel {
+    rim: number
+    tire: number
+    getDiameter(): number
 }
