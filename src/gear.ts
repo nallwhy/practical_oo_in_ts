@@ -9,15 +9,24 @@ export class Gear {
     private get cog(): number {
         return this._cog
     }
-    private _wheel: Wheel
+    private _rim: number
+    private get rim(): number {
+        return this._rim
+    }
+    private _tire: number
+    private get tire(): number {
+        return this._tire
+    }
+    private _wheel?: Wheel
     private get wheel(): Wheel {
-        return this._wheel
+        return this._wheel || (this._wheel = new Wheel(this.rim, this.tire))
     }
 
     constructor(chainring: number, cog: number, rim: number, tire: number) {
         this._chainring = chainring
         this._cog = cog
-        this._wheel = new Wheel(rim, tire)
+        this._rim = rim
+        this._tire = tire
     }
 
     public get ratio(): number {
