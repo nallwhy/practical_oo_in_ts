@@ -25,7 +25,11 @@ export class Gear {
 
     // gear inches = tire diameter * ratio
     public get gearInches(): number {
-        return this.ratio * this.wheel.diameter
+        return this.ratio * this.diameter
+    }
+
+    private get diameter(): number {
+        return this.wheel.diameter
     }
 }
 
