@@ -12,10 +12,10 @@ export class Gear {
         return this._wheel
     }
 
-    constructor(chainring: number, cog: number, wheel: IWheel) {
-        this._chainring = chainring
-        this._cog = cog
-        this._wheel = wheel
+    constructor(args: { chainring: number, cog: number, wheel: IWheel }) {
+        this._chainring = args.chainring
+        this._cog = args.cog
+        this._wheel = args.wheel
     }
 
     // ratio = chainring / cog
