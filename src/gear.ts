@@ -12,10 +12,16 @@ export class Gear {
         return this._wheel
     }
 
-    constructor(args: { chainring: number, cog: number, wheel: IWheel }) {
-        this._chainring = args.chainring
-        this._cog = args.cog
-        this._wheel = args.wheel
+    constructor(args: { chainring?: number, cog?: number, wheel: IWheel }) {
+        const argsWithDefaults = { ...this.defaults(), ...args }
+
+        this._chainring = argsWithDefaults.chainring
+        this._cog = argsWithDefaults.cog
+        this._wheel = argsWithDefaults.wheel
+    }
+
+    private defaults(): { chainring: number, cog: number } {
+        return { chainring: 40, cog: 18 }
     }
 
     // ratio = chainring / cog

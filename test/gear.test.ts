@@ -1,6 +1,18 @@
 import { Gear } from "../src/gear"
 import { Wheel } from "../src/wheel"
 
+describe("constructor", () => {
+    test("returns new Gear with default chainring value 40", () => {
+        const gear: Gear = new Gear({ cog: 10, wheel: new Wheel(0, 0) })
+        expect(gear.ratio).toBeCloseTo(4)
+    })
+
+    test("returns new Gear with default cog value", () => {
+        const gear: Gear = new Gear({ chainring: 36, wheel: new Wheel(0, 0) })
+        expect(gear.ratio).toBeCloseTo(2)
+    })
+})
+
 describe("ratio", () => {
     test("returns chainring / cog", () => {
         const gear0: Gear = new Gear({ chainring: 52, cog: 11, wheel: new Wheel(0, 0) })
